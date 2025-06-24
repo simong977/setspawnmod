@@ -1,4 +1,4 @@
-name: Build and Release Mod
+name: Java CI with Gradle
 
 on:
   push:
@@ -30,29 +30,3 @@ jobs:
         with:
           name: mod-jar
           path: build/libs/*.jar
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: mod-jar
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v1.0
-          name: setspawnmod-1.0.jar
-          asset_path: build/libs/setspawnmod-1.0.jar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

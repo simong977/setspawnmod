@@ -17,15 +17,14 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Ensure gradlew is executable
+      - name: Make gradlew executable
         run: |
-          dos2unix gradlew
           chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Upload JAR as artifact
+      - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: mod-jar

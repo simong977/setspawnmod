@@ -17,8 +17,10 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Make Gradle Executable
-        run: chmod +x gradlew
+      - name: Ensure gradlew is executable
+        run: |
+          dos2unix gradlew
+          chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew build
